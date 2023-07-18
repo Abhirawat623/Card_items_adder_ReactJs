@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const Cartlist =({data})=>{
 
 const [counter , setCounter ] = useState(0);
@@ -9,7 +10,7 @@ const increasedByOne = ()=>{
 }
 
 const decreasedByOne= ()=>{
-if(counter ===0){
+if(counter<1){
     return;}
     
 
@@ -17,9 +18,6 @@ setCounter(counter-1);
 
 
 }
-
-
-
 
 return(
   <div className={"card-container"}>
@@ -29,7 +27,7 @@ return(
   <div className={"prices"}>
    <span className={"new-price"}>Rs.{data.discountedPrice}</span>
        <small className={"old-price"}>
-       <strike>Rs.{data.price}</strike>
+       <strike>Rs.{data.originalPrice}</strike>
        </small>
    </div>
    <div className="lower-cart">

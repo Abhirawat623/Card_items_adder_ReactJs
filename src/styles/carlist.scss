@@ -5,7 +5,7 @@
     padding: 15px 30px;
     width: 100%;
     min-height: 100vh;
-    padding-left: 20px;
+    padding-left: 20px;}
 
 .cart-lists-wrapper{
     display: flex;
@@ -17,7 +17,7 @@
 
 .card-container{
     border: 1px solid rgb(148, 148, 148);
-    width: 15rem;
+    min-width:40%;
     height: 22rem;
     display: flex;
     justify-content: center;
@@ -64,4 +64,4 @@
     width: 35px;
     margin: 5px;
    }
-}}
+}

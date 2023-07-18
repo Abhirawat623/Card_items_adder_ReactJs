@@ -1,7 +1,5 @@
 import { useState } from "react";
-import Carts from "./carts"
-
-
+import Cartlist from "./Cartlist"
 const Cartform =()=>{
 
     const[title,setTitle] = useState("");
@@ -14,22 +12,24 @@ const Cartform =()=>{
    const [ discountedPrice, setDiscountedPrice] = useState(0);
    
    const handleDiscounted =(event)=>{
+  
+    if(setDiscountedPrice <=0){
+       return alert("can't be 0");
+       }
 
-if(handleDiscounted <1){
-    return;
-}
    setDiscountedPrice(event.target.value)
 
    }
   
 
    const [ originalPrice, setOriginalPrice] =useState(0);
-
+   
 
    const handleOriginal=(event)=>{
- if (handleOriginal<1){
-    return;
- }
+   if(setOriginalPrice<=0){
+    
+    return alert("can't be 0")
+   }
    setOriginalPrice(event.target.value);
       
 
@@ -42,7 +42,7 @@ const handleThumbnail=(event)=>{
 
 //setting items 
 const [item,setItem] =useState({
-    discountedPrice: 400,
+    discountedPrice:400,
     originalPrice:700,
     title:"Product Title",
     thumbnail:"product.png"
@@ -61,14 +61,8 @@ const submitForm=(event)=>{
         title,discountedPrice,originalPrice,thumbnail
     })
 }
-
 //for setting items in card
-
-
-
-
 return(
-
 <div className="form-container">
 <form className="form-main" onSubmit={submitForm}>
     <h2 className="item-form-heading">Item Card Adder</h2>
@@ -90,7 +84,7 @@ return(
 
 </form>
 
-<Carts data={item}></Carts>
+<Cartlist data={item}></Cartlist>
 </div>
 
 
