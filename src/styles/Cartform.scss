@@ -1,0 +1,25 @@
+
+
+.form-container{
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+.form-main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgb(224, 219, 211);
+    width: 100%;
+    min-height: 30vh;
+    padding: 10px;
+
+}
+.submit-btn{
+    margin-left: 15rem;
+    background-color: rgb(233, 233, 233);
+}
+}
