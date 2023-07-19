@@ -2,43 +2,37 @@ import { useState } from "react";
 import Cartlist from "./Cartlist"
 const Cartform =()=>{
 
-    const[title,setTitle] = useState("");
+//     const[title,setTitle] = useState("");
 
-    const handletitle =(event)=>{
-        // console.log(event.target.value)
-        setTitle(event.target.value)
-    }
+//     // const handletitle =(event)=>{
+//     //     // console.log(event.target.value)
+//     // //     setTitle(event.target.value)
+//     // // }
     
-   const [ discountedPrice, setDiscountedPrice] = useState(0);
+// //    const [ discountedPrice, setDiscountedPrice] = useState(0);
    
-   const handleDiscounted =(event)=>{
-  
-    if(setDiscountedPrice <=0){
-       return alert("can't be 0");
-       }
-
-   setDiscountedPrice(event.target.value)
-
-   }
+// //    const handleDiscounted =(event)=>{
   
 
-   const [ originalPrice, setOriginalPrice] =useState(0);
+// //    setDiscountedPrice(event.target.value)
+
+//    }
+  
+
+//    const [ originalPrice, setOriginalPrice] =useState(0);
    
 
-   const handleOriginal=(event)=>{
-   if(setOriginalPrice<=0){
-    
-    return alert("can't be 0")
-   }
-   setOriginalPrice(event.target.value);
+//    const handleOriginal=(event)=>{
+  
+// //    setOriginalPrice(event.target.value);
       
 
-}
+// }
 
-const [thumbnail, setThumbnail]= useState("");
-const handleThumbnail=(event)=>{
-    setThumbnail(event.target.value)
-}
+// const [thumbnail, setThumbnail]= useState("");
+// const handleThumbnail=(event)=>{
+//     // setThumbnail(event.target.value)
+// }
 
 //setting items 
 const [item,setItem] =useState({
@@ -49,17 +43,24 @@ const [item,setItem] =useState({
 
 })
 
-
+const handleInput =(event)=>{
+    
+    setItem({...item,
+    [event.target.name]:event.target.value})
+}
 
 
 const submitForm=(event)=>{
     event.preventDefault();
+    if(item.discountedPrice > item.originalPrice){
+        alert("original price should not exceed discount price")
+    }
     //prohobits the relaoding of the page
-    console.log(title,discountedPrice,originalPrice,thumbnail);
+    // console.log(title,discountedPrice,originalPrice,thumbnail);
     //the page will be refreshed so add prevent default
-    setItem({
-        title,discountedPrice,originalPrice,thumbnail
-    })
+    // setItem({
+    //     title,discountedPrice,originalPrice,thumbnail
+    // })
 }
 //for setting items in card
 return(
@@ -68,16 +69,41 @@ return(
     <h2 className="item-form-heading">Item Card Adder</h2>
 
 <label htmlFor="title">Title</label>
-<input type="text" placeholder="Enter the product Title" onChange={handletitle}  required/>
+<input 
+        type="text" 
+        placeholder="Enter the product Title"
+        onChange={handleInput}
+        //name for above input
+        name="title"
+        value={item.title}  
+        required/>
 
-<label htmlFor="title">Discounted Price</label>
-<input type="text" placeholder="Enter the discounted price" onChange={handleDiscounted}  required/>
+<label htmlFor="discountedPrice">Discounted Price</label>
+<input type="number" 
+       placeholder="Enter the discounted price" 
+       onChange={handleInput}  
 
-<label htmlFor="title">Original Price</label>
-<input type="text" placeholder="Enter the original price" onChange={handleOriginal} required/>
+       name="discountedPrice"
+       value={item.discountedPrice} 
+       required/>
 
-<label htmlFor="title">thumbnail</label>
-<input type="text" placeholder="Enter the Thumbnail" onChange={handleThumbnail} required/>
+<label htmlFor="originalPrice">Original Price</label>
+<input type="number" 
+       placeholder="Enter the original price" 
+       onChange={handleInput} 
+
+       name="originalPrice"
+       value={item.originalPrice} 
+       required/>
+
+<label htmlFor="thumbnail">thumbnail</label>
+<input type="text" 
+       placeholder="Enter the Thumbnail" 
+       value={item.thumbnail} 
+
+       name="thumbnail"
+       onChange={handleInput} 
+       required/>
 
 
 <button className="submit-btn">Submit</button>
